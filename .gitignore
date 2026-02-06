@@ -1,0 +1,5 @@
+# Dependencias (Nunca subir esto porque son las librerías instaladas)
+node_modules/
+/backend/node_modules/
+/frontend/node_modules/
+
