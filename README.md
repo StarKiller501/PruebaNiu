@@ -1,4 +1,4 @@
- Prueba Técnica: Sistema de Gestión de Colaboradores 
+ # Prueba Técnica: Sistema de Gestión de Colaboradores 
 
 ## Descripción
  Prueba técnica implementando REST con Node.js/Express y el Frontend en React
