@@ -1,29 +1,25 @@
 import express from 'express';
 import { pool } from './config/db.js';
 import dotenv from 'dotenv';
+import cors from 'cors';
+import colaboradorRoutes from './routes/colaboradorRoutes.js'; //ruta para el uso del CRUD
 
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Middleware para entender JSON para post
+app.use(cors()); 
 app.use(express.json());
 
-// Ruta de prueba para verificar conexión a DB
+app.use(colaboradorRoutes);
+
 app.get('/ping', async (req, res) => {
     try {
-        // una consulta simple 1 + 1 a la base de datos para probar la conexión 
         const [result] = await pool.query('SELECT 1 + 1 AS solution');
-        res.json({ 
-            mensaje: 'Conexión exitosa a la base de datos', 
-            resultado: result[0].solution 
-        });
+        res.json({ mensaje: 'Conexión exitosa', resultado: result[0].solution });
     } catch (error) {
-        res.status(500).json({ 
-            mensaje: 'Error conectando a la BD', 
-            error: error.message 
-        });
+        res.status(500).json({ mensaje: 'Error BD', error });
     }
 });
 
