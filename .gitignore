@@ -1,7 +1,7 @@
 # Dependencias (Nunca subir esto porque son las librerías instaladas)
 node_modules/
-/backend/node_modules/
-/frontend/node_modules/
+/DATOSEMPLEADO.BE/node_modules/
+/DATOSEMPLEADO.FE/node_modules/
 
 # Logs y archivos de sistema
 *.log
@@ -13,5 +13,5 @@ node_modules/
 *.env
 
 # Builds de producción (se generan automáticamente)
-/frontend/dist/
-/frontend/build/
+/DATOSEMPLEADO.FE/dist/
+/DATOSEMPLEADO.FE/build/

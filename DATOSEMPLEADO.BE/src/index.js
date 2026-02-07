@@ -16,7 +16,7 @@ app.get('/ping', async (req, res) => {
         // una consulta simple 1 + 1 a la base de datos para probar la conexión 
         const [result] = await pool.query('SELECT 1 + 1 AS solution');
         res.json({ 
-            mensaje: 'Conexión exitosa a la base de datos xd', 
+            mensaje: 'Conexión exitosa a la base de datos', 
             resultado: result[0].solution 
         });
     } catch (error) {
