@@ -24,12 +24,12 @@ const FormularioColaborador = ({ onColaboradorAgregado }) => {
         });
     };
 
-    // Manejar el envío del formulario
+    // manejamos el envío del formulario
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
 
-        // 1. Validación Frontend
+        //validación en el lado del frontend
         if (!formData.nombre || !formData.apellido || !formData.edad) {
             setError('Nombre, Apellido y Edad son obligatorios.');
             return;
@@ -40,18 +40,18 @@ const FormularioColaborador = ({ onColaboradorAgregado }) => {
             return;
         }
 
-        // 2. Enviar al Backend
+        //enviamos al back usando el servicio que creamos
         try {
             await createColaborador({
                 ...formData,
-                edad: parseInt(formData.edad) // Aseguramos que sea número
+                edad: parseInt(formData.edad) //aseguramos que sea número
             });
             
-            // Limpiar formulario y notificar éxito
+            //limpiar formulario y notificar éxito
             setFormData(initialState);
             alert('Colaborador agregado correctamente');
             
-            // Esta función avisa al padre (App) que recargue la tabla
+            //esta función avisa al padre (App) que recargue la tabla
             if (onColaboradorAgregado) onColaboradorAgregado();
 
         } catch (err) {

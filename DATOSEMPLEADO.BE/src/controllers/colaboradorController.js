@@ -3,10 +3,32 @@ import {pool} from '../config/db.js';
 // Creo el get para todos select * from colaborador
 export const getColaboradores = async (req, res) => {
     try {
-        const [rows] = await pool.query('SELECT * FROM COLABORADOR');
-        res.json(rows);
+        // Leemos los parámetros de la URL (ej: ?page=1&limit=5)
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 5;
+        const offset = (page - 1) * limit; // Calculamos desde dónde empezar a leer
+
+        //obtenemos el TOTAL de registros (para saber cuántas páginas hay)
+        const [totalResult] = await pool.query('SELECT COUNT(*) as total FROM COLABORADOR');
+        const totalRegistros = totalResult[0].total;
+        const totalPaginas = Math.ceil(totalRegistros / limit);
+
+        //aca solo obtenemos los registros de esta página
+        // Usamos LIMIT y OFFSET para cortar los datos
+        const [rows] = await pool.query('SELECT * FROM COLABORADOR LIMIT ? OFFSET ?', [limit, offset]);
+
+        // Devolvemos un objeto con los datos Y la información de paginación
+        res.json({
+            data: rows,
+            pagination: {
+                page,
+                limit,
+                totalRegistros,
+                totalPaginas
+            }
+        });
     } catch (error) {
-        res.status(500).json({message: 'Error al obtener datos', error });
+        res.status(500).json({ message: 'Error al obtener datos', error });
     }
 };
 
