@@ -78,7 +78,7 @@ npm run dev
 ## 3. Fronted 
 La aplicación web se ejecutará en el puerto 5173 (puerto por defecto de Vite).
 
-Nota Técnica sobre Estilos: Este proyecto utiliza explícitamente TailwindCSS v3.4.17 para su compatibilidad con la configuración actual de PostCSS y evitar conflictos conocidos con versiones más recientes (v4).
+Nota Técnica sobre Estilos: Este proyecto utiliza necesariamente TailwindCSS v3.4.17 para su compatibilidad con la configuración actual de PostCSS y evitar conflictos conocidos con versiones más recientes como la v4.
 
 Navegar al directorio del frontend:
 Desde la raíz del proyecto
